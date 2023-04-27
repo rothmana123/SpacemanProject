@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <script defer src="main.js"></script>
+    <title>Spaceman!</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="column1">
+            <div id="title">
+                <h2 id="display">Letter Board</h2>
+            </div>
+
+            <div class= "letterBoard" id="letterBoard"></div>
+
+            <div id="start">
+                 <button class="button" id="replayButton">Replay! </button>
+            </div>
+        </div>
+  
+        <div class="column2">
+          <h1>Spaceman Game</h1>
+          
+          <div class ="messageArea">
+            <div class="messageLabel">
+                <p id="mainMessage">Guess the word to stop the Spaceship Countdown!</p>
+            </div>
+          </div>
+
+          <div class="answerBoard">
+            <div class="box" id="1"></div>
+            <div class="box" id="2"></div>
+            <div class="box" id="3"></div>
+            <div class="box" id="4"></div>
+            <div class="box" id="5"></div>
+          </div>
+
+          <form class="submitArea" id="letterForm">
+            <label for="answerInput">Enter a Letter and Click Submit</label>
+            <input type="text" maxlength="1" class="input" id="answerInput"/>
+            <button class="button" id="submitButton">Submit </button>
+          </form>
+        </div>
+  
+        <div class="column3">
+            <div class="countdownArea">
+              <h2 id="display">Spaceship Countdown</h2>
+              <p id="wrongGuessLabel">You have 5 guesses left</p>
+            </div>
+            <div class="countdownBox">
+              <p class="timerArea">30</p>
+
+            </div>
+        </div>
+  
+      </div>
+    
+</body>
+</html>
