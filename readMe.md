@@ -2,7 +2,7 @@
 
 <h1>Spaceman Game!</h1>
 
-<h3>A modern update on H@n&man</h3>
+<h3>Spaceman is a fun and engaging word-guessing game that can be enjoyed by people of all ages (a modern update on H@n&man)</h3>
 
 <h2>Wireframes</h2>
 1. Beginning Game <br>
@@ -33,7 +33,18 @@
   <li>Javascript</li>
  </ul>
 
+<h2>Getting Started</h2>
+  
+<ul>
+   <li>The player starts by guessing letters that they think might be in the word. Each guess should be a single letter. </li>
 
+   <li>The player get 5 incorrect guesses.</li>
+
+   <li>If the player successfully guesses the word before running out of incorrect guesses, they win the game.</li>
+
+   <li>If the player has 5 incorrect guesses, they lose the game. </li>
+</ul>
+  
 <h2>User Story</h2>
 
 As a player, 
@@ -119,16 +130,11 @@ As a player,
       - message label: Game Over
       - answerBoard -> reveal correct answer
       - rocket explosion animation
+</ul>
       
-      
-  <li>7. Possible Extentions</li>
+<h2>Possible Extentions</h2>
    
-    - Change background color of input if correct
-    - Change background image/style of screen
     - Add a timer
     - Add difficulty: Beginner, Medium, Expert
     - Add additional letters
     - Sound for correct, incorrect
-    - User Input
-    - Message if they have already used letter
-    - Message if their entry is not a letter
