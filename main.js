@@ -3,7 +3,6 @@ let wordList = ['apple', 'house', 'bread', 'phone', 'water']
 let pickWordIndex = Math.floor(Math.random() * wordList.length);
 let gameWord = wordList[pickWordIndex]
 let wrongGuess = 5
-let timerIntervalId;
 
 
 console.log(gameWord)
@@ -20,6 +19,31 @@ for (let i = 0; i < gameWord.length; i++) {
     gameWordArray[i] = gameWord[i]
 }
 
+//timer functions
+let intervalId;
+
+function startTimer() {
+  intervalId = setInterval(myTimer, 1000);
+}
+
+function myTimer() {
+  document.getElementById('timerArea').textContent = timerNum;
+  timerNum--
+  console.log(timerNum);
+  if (timerNum < 0) {
+    stopTimer()
+  }
+}
+
+function stopTimer() {
+  clearInterval(intervalId);
+  if (timerNum <= 0) {
+    messageLabel.style.color = 'yellow';
+    document.getElementById('mainMessage').textContent = "Ran out of time!";
+  }
+}
+
+
 //3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant.
 
 const startButton = document.querySelector('#startButton')
@@ -29,6 +53,7 @@ const answerBoxes = document.querySelectorAll('.box')
 const messageLabel = document.querySelector('#mainMessage')
 const wrongGuessLabel = document.querySelector('#wrongGuessLabel')
 const answerInput = document.querySelector('#answerInput')
+const timer = document.getElementById('timerArea')
 //variable to store answerInput
 const letterBoard = document.getElementById('letterBoard')
 
@@ -96,34 +121,29 @@ function processGuess(guess, gameWordArray) {
         if (gameWordArray[i] === guess) {
             correctGuessArray[i] = guess
             messageLabel.textContent = ('Yes!')
-
         } 
     }
     if (checkWinner(correctGuessArray, gameWordArray)) {
       console.log("Congratulations! You guessed the word: " + gameWord);
+      messageLabel.style.color = 'yellow';
       messageLabel.textContent = "Congratulations! You guessed the word: " + gameWord
-      //winner function
-      //or just set a winnin message
+      renderWord(correctGuessArray)
+      stopTimer()
     }
-    
   } else {
     wrongGuess--
     if (wrongGuess === 0) {
-      console.log("You have no more guesses left!  The word was " + gameWord);
+      wrongGuessLabel.textContent = ("You have " + wrongGuess + " guesses left.")
+      messageLabel.style.color = 'yellow';
       messageLabel.textContent = "You have no more guesses left!  The word was " + gameWord
-      //replace with an endGame function
-      //set messageLabel to "You Lost!  Play Again"
+      stopTimer()
+      
     } else {
         console.log("Your guess is not in the word. You have " + wrongGuess + " left.")
         wrongGuessLabel.textContent = ("You have " + wrongGuess + " guesses left.")
         messageLabel.textContent = ("Nope")
-        //set messageLabel to "You Lost!  Play Again"
     }
   }
- //delete console.logs
-  console.log("this is the totalGuessArray: " + totalGuessArray)
-  console.log("this is the correctGuessArray: " + correctGuessArray)
-  console.log(checkWinner(correctGuessArray, gameWordArray))
 }
 
 //checkWinner Function
@@ -137,11 +157,8 @@ function checkWinner(arr1, arr2) {
       return false;
     }
   }
-
   return true;
 }
-
-
 
 //play the game
 //how to have function running in the background, waiting for checkguess?
@@ -161,6 +178,9 @@ function replay() {
   console.log(gameWord)
   wrongGuessLabel.textContent = ("You have 5 guesses left")
   messageLabel.textContent = ('Guess the word to stop the spaceship countdown!')
+  messageLabel.style.color = 'white';
+  timerNum = 30
+  startTimer()
 }
 
 function renderWord (correctGuessArray) {
@@ -188,53 +208,3 @@ function updateBoard(guess) {
   const updateLetter = document.getElementById('letter-' + guess)
   updateLetter.classList.add('letter--selected')
 }
-
-//countdown timer
-
-function startTimer(duration, display) {
-  var timer = duration, minutes, seconds;
-  setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
-
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-
-      display.textContent = minutes + ":" + seconds;
-      
-      
-      if (--timer < 0) {
-        document.querySelector('.timerArea').innerText = "00:00"
-      }
-  }, 1000);
-}
-
-  
-  var fiveMinutes = 30,
-  display = document.querySelector('.timerArea');
-  startTimer(fiveMinutes, display);
-
-/*
-function startTimer(duration, display) {
-  var timer = duration, minutes, seconds;
-  setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
-
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-
-      display.textContent = minutes + ":" + seconds;
-      
-      
-      if (--timer < 0) {
-        document.querySelector('.timerArea').innerText = "00:00"
-      }
-  }, 1000);
-}
-
-  
-  var fiveMinutes = 30,
-  display = document.querySelector('.timerArea');
-  startTimer(fiveMinutes, display);
-  */
